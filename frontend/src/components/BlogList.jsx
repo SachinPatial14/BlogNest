@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { blogCategories } from "../assets/assets";
+import { blog_data, blogCategories } from "../assets/assets";
 import { motion } from "motion/react";
+import BlogCard from "./BlogCard";
 
 const BlogList = () => {
   const [menu, setMenu] = useState("All");
@@ -34,7 +35,10 @@ const BlogList = () => {
         ))}
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8
+      mb-24 mx-8 sm:mx-16 xl:mx-40">
+        {blog_data.filter((blog)=> menu === "All"?true:blog.category === menu)
+        .map((blog)=><BlogCard key={blog._id} blog={blog}/>)}
       </div>
     </div>
   );
