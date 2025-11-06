@@ -3,6 +3,7 @@ import 'dotenv/config' ;
 import cors from 'cors' ;
 import mongoose from 'mongoose'
 import adminRouter from './Routes/adminRoutes.js';
+import blogRouter from './Routes/blogRoutes.js';
 
 const app = express();
 
@@ -32,4 +33,6 @@ mongoose
 
 
   app.use('/api/admin',adminRouter);
+  app.use('/api/blog',blogRouter);
+  
 export default app ;

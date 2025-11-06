@@ -1,7 +1,19 @@
 import express from 'express';
-import { addBlog } from '../Controllers/blogController.js';
+import { addBlog, deleteBlogById, getAllBlogs, getBlogById, togglePublish } from '../Controllers/blogController.js';
+import upload from '../Middleware/multer.js';
+import auth from '../Middleware/auth.js';
 
 const blogRouter = express.Router();
 
-blogRouter.post("/add",addBlog);
+blogRouter.post("/add",upload.single('image'),auth,addBlog);
 
+blogRouter.get('/all',getAllBlogs);
+
+blogRouter.get('/:blogId',getBlogById);
+
+blogRouter.post('/delete',auth,deleteBlogById);
+
+blogRouter.post('/toggle-publish',auth,togglePublish)
+
+
+export default blogRouter ;
